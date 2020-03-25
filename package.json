@@ -1,5 +1,5 @@
 {
-  "name": "snap-it",
+  "name": "@patys/snap-it",
   "version": "0.0.1",
   "description": "Tool to generate jest test cases with snapshots for React Native components.",
   "main": "index.ts",
