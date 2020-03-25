@@ -10,7 +10,9 @@ yargs
   .argv;
 
 async function snapshot(argv: yargs.Arguments<any>) {
-  const fileName = path.join(process.cwd(), argv.name);
+  const fileName = path.join(process.cwd(), argv.name)
+  console.log(fileName)
+
   const testNameRegex = /[^\/]+(?=\.)/g
   const testName = fileName.match(testNameRegex)[0]
 
