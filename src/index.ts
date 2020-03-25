@@ -24,13 +24,11 @@ async function snapshot(argv: yargs.Arguments<any>) {
     ts.forEachChild(source, (node) => {
       if (ts.isInterfaceDeclaration(node)){
         const name = node.name.text
-        console.log(name)
         // @ts-ignore
         const symbol = checker.getSymbolAtLocation(node.name)
         const data = [] as TestPropsInfo[]
         symbol.members.forEach((loc) => {
           const info = serializeSymbol(loc, checker)
-          console.log(info)
           data.push(info)
         })
         generateTestFile(data, testName)
