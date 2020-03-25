@@ -1,0 +1,24 @@
+import React from 'react';
+import { render } from 'react-native-testing-library';
+
+import { <%= componentName %> } from 'components';
+
+describe('<%= componentName %>', () => {
+  test('Snaphot for required props', () => {
+    const props = {
+      <%- getRequiredProps(data) %>
+    }
+    const tree = render(<<%= componentName %> {...props} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  <% for(var i=0; i < getOptionalPropsArray(data).length; i++) {%>
+  test('Snaphot for <%= getOptionalPropsArray(data)[i].name %>', () => {
+    const props = {
+      <%- getRequiredProps(data) %>
+      <%= getOptionalPropsArray(data)[i].name %>: <%- getPropValue(getOptionalPropsArray(data)[i].type) %>,
+    }
+    const tree = render(<<%= componentName %> {...props} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  <% } %>
+});
