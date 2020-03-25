@@ -11,7 +11,7 @@ yargs
 
 async function snapshot(argv: yargs.Arguments<any>) {
   const fileName = path.join(process.cwd(), argv.name)
-  console.log(fileName)
+  console.log(`Reading: ${fileName}`)
 
   const testNameRegex = /[^\/]+(?=\.)/g
   const testName = fileName.match(testNameRegex)[0]
@@ -20,19 +20,21 @@ async function snapshot(argv: yargs.Arguments<any>) {
   const checker = program.getTypeChecker()
   const source = program.getSourceFile(fileName)
 
-  if (source) {
-    ts.forEachChild(source, (node) => {
-      if (ts.isInterfaceDeclaration(node)){
-        const name = node.name.text
-        // @ts-ignore
-        const symbol = checker.getSymbolAtLocation(node.name)
-        const data = [] as TestPropsInfo[]
-        symbol.members.forEach((loc) => {
-          const info = serializeSymbol(loc, checker)
-          data.push(info)
-        })
-        generateTestFile(data, testName)
-      }
-    });
+  if (!source) {
+    // TODO: move to chalk js lib to provide better error messages
+    throw new Error('Typescript source file is required')
   }
+
+  ts.forEachChild(source, (node) => {
+    if (ts.isInterfaceDeclaration(node)){
+      // @ts-ignore
+      const symbol = checker.getSymbolAtLocation(node.name)
+      const data = [] as TestPropsInfo[]
+      symbol.members.forEach((loc) => {
+        const info = serializeSymbol(loc, checker)
+        data.push(info)
+      })
+      generateTestFile(data, testName)
+    }
+  });
 }
