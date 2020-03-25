@@ -1,6 +1,6 @@
 {
   "name": "@patys/snap-it",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Tool to generate jest test cases with snapshots for React Native components.",
   "main": "index.ts",
   "author": "Patryk Szczygło",
