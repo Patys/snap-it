@@ -37,7 +37,6 @@
     "@babel/preset-typescript": "^7.8.3",
     "ejs": "^3.0.1",
     "fs-extra": "^9.0.0",
-    "jest": "^25.1.0",
     "ts-jest": "^25.2.0",
     "tsc-watch": "^4.1.0",
     "tslint": "^6.0.0",
