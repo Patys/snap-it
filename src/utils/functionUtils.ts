@@ -1,4 +1,4 @@
 export function isFunction(type: string) {
-  const brackets = /\(([^)]+)\)/
+  const brackets = /\((.*)\)/
   return !!brackets.test(type)
 }

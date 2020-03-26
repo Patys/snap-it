@@ -118,7 +118,7 @@ describe('Search', () => {
     const props = {
       requiredTest: 'testing string',
 
-      functionTest: undefined,
+      functionTest: jest.fn(),
     }
     const tree = render(<Search {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
