@@ -10,7 +10,8 @@ yargs
   .argv;
 
 async function snapshot(argv: yargs.Arguments<any>) {
-  const fileName = path.join(process.cwd(), argv.name)
+  const root = process.cwd()
+  const fileName = path.relative(root, argv.name)
   console.log(`Reading: ${fileName}`)
 
   const testNameRegex = /[^\/]+(?=\.)/g
@@ -34,7 +35,7 @@ async function snapshot(argv: yargs.Arguments<any>) {
         const info = serializeSymbol(loc, checker)
         data.push(info)
       })
-      generateTestFile(data, testName)
+      generateTestFile(data, testName, fileName)
     }
   });
 }

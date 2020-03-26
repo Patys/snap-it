@@ -14,7 +14,7 @@ export function getOptionalPropsArray(data) {
   return data.filter(d => !d.required)
 }
 
-export function getPropValue(type) {
+export function getPropValue(type: string) {
   if (isFunction(type)) {
     return 'jest.fn()'
   }

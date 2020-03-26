@@ -7,9 +7,10 @@ import { getRequiredProps, getOptionalPropsArray, getPropValue } from './getProp
 
 const TEMPLATE = path.resolve(__dirname, '../template/template');
 
-export async function generateTestFile(data: TestPropsInfo[], filename: string) {
-  // TODO: add posibility to point place
-  const dest = path.join(process.cwd(), '__tests__')
+export async function generateTestFile(data: TestPropsInfo[], filename: string, filepath: string) {
+  const root = process.cwd()
+  const dest = path.relative(root, '__tests__')
+  const filepathRelative = path.relative(dest, filepath)
   await fs.mkdirp(dest);
 
   const target = `${dest}/${filename}.test.tsx`;
@@ -22,5 +23,6 @@ export async function generateTestFile(data: TestPropsInfo[], filename: string) 
     getOptionalPropsArray,
     getPropValue,
     componentName: filename,
+    filepath: filepathRelative,
   }));
 }
