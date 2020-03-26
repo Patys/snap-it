@@ -1,5 +1,7 @@
 # snap-it
 
+[![npm version](https://badge.fury.io/js/%40patys%2Fsnap-it.svg)](https://badge.fury.io/js/%40patys%2Fsnap-it)
+
 This is a tool to create a snapshot for your components.
 
 
