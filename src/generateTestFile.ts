@@ -2,6 +2,7 @@ import path from 'path';
 import ejs from 'ejs';
 import fs from 'fs-extra';
 
+import { info, success } from './utils/logger'
 import { TestPropsInfo } from './serializeSymbol';
 import { getRequiredProps, getOptionalPropsArray, getPropValue } from './getProps';
 
@@ -16,7 +17,7 @@ export async function generateTestFile(data: TestPropsInfo[], filename: string, 
   const target = `${dest}/${filename}.test.tsx`;
   const content = await fs.readFile(TEMPLATE, 'utf8');
 
-  console.log(`Writing to ${target}`)
+  info(`Writing to ${target}`)
   await fs.writeFile(target, ejs.render(content, {
     data,
     getRequiredProps,
@@ -25,4 +26,5 @@ export async function generateTestFile(data: TestPropsInfo[], filename: string, 
     componentName: filename,
     filepath: filepathRelative,
   }));
+  success(`Done, check your test in ${target}`)
 }

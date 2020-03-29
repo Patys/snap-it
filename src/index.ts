@@ -2,6 +2,7 @@ import path from 'path';
 import * as ts from 'typescript'
 import yargs from 'yargs';
 
+import { info, error } from './utils/logger';
 import { serializeSymbol, TestPropsInfo } from './serializeSymbol';
 import { generateTestFile } from './generateTestFile';
 
@@ -12,7 +13,7 @@ yargs
 async function snapshot(argv: yargs.Arguments<any>) {
   const root = process.cwd()
   const fileName = path.relative(root, argv.name)
-  console.log(`Reading: ${fileName}`)
+  info(`Reading: ${fileName}`)
 
   const testNameRegex = /[^\/]+(?=\.)/g
   const testName = fileName.match(testNameRegex)[0]
@@ -23,12 +24,12 @@ async function snapshot(argv: yargs.Arguments<any>) {
 
   if (!source) {
     // TODO: move to chalk js lib to provide better error messages
-    throw new Error('Typescript source file is required')
+    error('Typescript source file is required')
+    return
   }
 
   ts.forEachChild(source, (node) => {
     if (ts.isInterfaceDeclaration(node)){
-      // @ts-ignore
       const symbol = checker.getSymbolAtLocation(node.name)
       const data = [] as TestPropsInfo[]
       symbol.members.forEach((loc) => {
