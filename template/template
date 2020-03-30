@@ -15,7 +15,7 @@ describe('<%= componentName %>', () => {
   test('Snaphot for <%= getOptionalPropsArray(data)[i].name %>', () => {
     const props = {
       <%- getRequiredProps(data) %>
-      <%= getOptionalPropsArray(data)[i].name %>: <%- getPropValue(getOptionalPropsArray(data)[i].type) %>,
+      <%= getOptionalPropsArray(data)[i].name %>: <%- getPropValue(getOptionalPropsArray(data)[i]) %>,
     }
     const tree = render(<<%= componentName %> {...props} />).toJSON();
     expect(tree).toMatchSnapshot();

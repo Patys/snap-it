@@ -7,6 +7,9 @@ interface Props {
   stringTest?: string;
   anyTest?: any;
   functionTest?: () => void;
+  color?: string;
+  backgroundColor?: string;
+  bgColor?: string;
 
   requiredTest: string;
 }
