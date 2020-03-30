@@ -1,49 +1,49 @@
 import { isFunction } from './utils/functionUtils';
 
 export function getRequiredProps(data) {
-  let requriedString = ""
-  for(let i = 0; i < data.length; i++) {
+  let requriedString = '';
+  for (let i = 0; i < data.length; i++) {
     if (data[i].required) {
-      requriedString += `${data[i].name}: ${getPropValue(data[i])},\n`
+      requriedString += `${data[i].name}: ${getPropValue(data[i])},\n`;
     }
   }
-  return requriedString
+  return requriedString;
 }
 
 export function getOptionalPropsArray(data) {
-  return data.filter(d => !d.required)
+  return data.filter((d) => !d.required);
 }
 
 export function getPropValue(data) {
-  const type = data.type
+  const type = data.type;
 
   if (isFunction(type)) {
-    return 'jest.fn()'
+    return 'jest.fn()';
   }
 
-  switch(type) {
+  switch (type) {
     case 'string':
-      return `'${getStringType(data.name)}'`
+      return `'${getStringType(data.name)}'`;
     case 'number':
-      return '123'
+      return '123';
     case 'boolean':
-      return 'true'
+      return 'true';
     case 'object':
-      return '{}'
+      return '{}';
     case 'any':
-      return '{}'
+      return '{}';
     default:
-      return 'undefined'
+      return 'undefined';
   }
 }
 
 function getStringType(name: string): string {
-  switch(name) {
+  switch (name) {
     case 'color':
     case 'backgroundColor':
     case 'bgColor':
-      return '#ffffff'
+      return '#ffffff';
     default:
-      return 'testing string'
+      return 'testing string';
   }
 }

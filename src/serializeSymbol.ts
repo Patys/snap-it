@@ -1,4 +1,4 @@
-import * as ts from 'typescript'
+import * as ts from 'typescript';
 
 export interface TestPropsInfo {
   name: string;
@@ -7,14 +7,19 @@ export interface TestPropsInfo {
   required: boolean;
 }
 
-export function serializeSymbol(symbol: ts.Symbol, checker: ts.TypeChecker): TestPropsInfo {
+export function serializeSymbol(
+  symbol: ts.Symbol,
+  checker: ts.TypeChecker
+): TestPropsInfo {
   return {
     name: symbol.getName(),
-    documentation: ts.displayPartsToString(symbol.getDocumentationComment(checker)),
+    documentation: ts.displayPartsToString(
+      symbol.getDocumentationComment(checker)
+    ),
     type: checker.typeToString(
       checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!)
     ),
     // @ts-ignore
-    required: !symbol.valueDeclaration.questionToken
+    required: !symbol.valueDeclaration.questionToken,
   };
 }
