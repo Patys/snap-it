@@ -8,7 +8,7 @@ This is a tool to create a snapshot for your components.
 ## Usage:
 Follow instalation guide and then:
 ```bash
-yarn snap-it components/Search.tsx
+yarn create-snapshot components/Search.tsx
 ```
 
 Or you can use it directly without installing:
@@ -28,7 +28,7 @@ Add to your package.json
 {
   "scripts": {
     ...
-    "snap-it": "yarn snap-it g "
+    "create-snapshot": "yarn snap-it g "
     ...
   }
 }
