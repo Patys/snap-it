@@ -18,6 +18,7 @@ export async function generateTestFile(
   filepath: string
 ) {
   const root = process.cwd();
+  // TODO: add possibllity to choose destination directory
   const dest = path.relative(root, '__tests__');
   const filepathRelative = path.relative(dest, filepath);
   await fs.mkdirp(dest);

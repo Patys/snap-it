@@ -10,6 +10,7 @@ export function getRequiredProps(data) {
   return requriedString;
 }
 
+// TODO: move generating this data to be similar to getRequiredProps so we can get rid of implementation inside template (template/template)
 export function getOptionalPropsArray(data) {
   return data.filter((d) => !d.required);
 }
@@ -20,7 +21,7 @@ export function getPropValue(data) {
   if (isFunction(type)) {
     return 'jest.fn()';
   }
-
+  // TODO: move all of this to separate functions like getStringType
   switch (type) {
     case 'string':
       return `'${getStringType(data.name)}'`;
@@ -38,6 +39,7 @@ export function getPropValue(data) {
 }
 
 function getStringType(name: string): string {
+  // TODO: move checking color to separate function and make it maybe regex?
   switch (name) {
     case 'color':
     case 'backgroundColor':
