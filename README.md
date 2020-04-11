@@ -2,16 +2,20 @@
 
 [![npm version](https://badge.fury.io/js/%40patys%2Fsnap-it.svg)](https://badge.fury.io/js/%40patys%2Fsnap-it)
 
-This is a tool to create a snapshot for your components.
+This is a tool to create a snapshot for your component. You can use it to simply generate boilerplate file with all cases. Keep in mind that you should verify and add your own test cases.
 
+Works only with TypeScript for now.
 
 ## Usage:
+
 Follow instalation guide and then:
+
 ```bash
 yarn create-snapshot components/Search.tsx
 ```
 
 Or you can use it directly without installing:
+
 ```bash
 npx @patys/snap-it g components/Search.tsx
 ```
@@ -54,13 +58,12 @@ interface Props {
 }
 
 export default function Search({}: Props) {
-  return (
-    <View />
-  );
+  return <View />;
 }
 ```
 
 Effect:
+
 ```javascript
 import React from 'react';
 import { render } from 'react-native-testing-library';
@@ -71,7 +74,7 @@ describe('Search', () => {
   test('Snaphot for required props', () => {
     const props = {
       requiredTest: 'testing string',
-    }
+    };
     const tree = render(<Search {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -81,7 +84,7 @@ describe('Search', () => {
       requiredTest: 'testing string',
 
       numberTest: 123,
-    }
+    };
     const tree = render(<Search {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -91,7 +94,7 @@ describe('Search', () => {
       requiredTest: 'testing string',
 
       booleanTest: true,
-    }
+    };
     const tree = render(<Search {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -101,7 +104,7 @@ describe('Search', () => {
       requiredTest: 'testing string',
 
       stringTest: 'testing string',
-    }
+    };
     const tree = render(<Search {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -111,7 +114,7 @@ describe('Search', () => {
       requiredTest: 'testing string',
 
       anyTest: {},
-    }
+    };
     const tree = render(<Search {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -121,10 +124,9 @@ describe('Search', () => {
       requiredTest: 'testing string',
 
       functionTest: jest.fn(),
-    }
+    };
     const tree = render(<Search {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
-
 });
 ```
