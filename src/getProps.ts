@@ -1,4 +1,8 @@
 import { isFunction } from './utils/functionUtils';
+import getStringType from './types/getStringType';
+import getNumberType from './types/getNumberType';
+import getBooleanType from './types/getBooleanType';
+import getObjectType from './types/getObjectType';
 
 export function getRequiredProps(data) {
   let requriedString = '';
@@ -26,26 +30,14 @@ export function getPropValue(data) {
     case 'string':
       return `'${getStringType(data.name)}'`;
     case 'number':
-      return '123';
+      return `'${getNumberType()}'`;
     case 'boolean':
-      return 'true';
+      return `'${getBooleanType()}'`;
     case 'object':
-      return '{}';
+      return `'${getObjectType()}'`;
     case 'any':
-      return '{}';
+      return `'${getObjectType()}'`;
     default:
       return 'undefined';
-  }
-}
-
-function getStringType(name: string): string {
-  // TODO: move checking color to separate function and make it maybe regex?
-  switch (name) {
-    case 'color':
-    case 'backgroundColor':
-    case 'bgColor':
-      return '#ffffff';
-    default:
-      return 'testing string';
   }
 }
