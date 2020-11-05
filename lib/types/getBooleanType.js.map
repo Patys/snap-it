@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/types/getBooleanType.ts"],"names":["getBooleanType"],"mappings":";;;;;;;AAAA,SAASA,cAAT,GAAkC;AAChC,SAAO,MAAP;AACD;;eAEcA,c","sourcesContent":["function getBooleanType(): string {\n  return 'true';\n}\n\nexport default getBooleanType;\n"],"file":"getBooleanType.js"}

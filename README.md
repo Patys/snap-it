@@ -20,6 +20,20 @@ Or you can use it directly without installing:
 npx @patys/snap-it g components/Search.tsx
 ```
 
+To save in the same directory use option: --direct=true
+
+```bash
+npx @patys/snap-it g components/Search.tsx --direct=true
+```
+
+Effect with direct:
+components/Search.tsx
+components/Search.test.tsx
+
+Effect without direct:
+components/Search.tsx
+\_\_tests\_\_/Search.test.tsx
+
 ## Installation:
 
 ```bash

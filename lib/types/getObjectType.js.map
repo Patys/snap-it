@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/types/getObjectType.ts"],"names":["getObjectType"],"mappings":";;;;;;;AAAA,SAASA,aAAT,GAAiC;AAC/B,SAAO,IAAP;AACD;;eAEcA,a","sourcesContent":["function getObjectType(): string {\n  return '{}';\n}\n\nexport default getObjectType;\n"],"file":"getObjectType.js"}

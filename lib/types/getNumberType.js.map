@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/types/getNumberType.ts"],"names":["getNumberType"],"mappings":";;;;;;;AAAA,SAASA,aAAT,GAAiC;AAC/B,SAAO,KAAP;AACD;;eAEcA,a","sourcesContent":["function getNumberType(): string {\n  return '123';\n}\n\nexport default getNumberType;\n"],"file":"getNumberType.js"}

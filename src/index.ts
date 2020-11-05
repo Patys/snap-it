@@ -9,6 +9,8 @@ import { generateTestFile } from './generateTestFile';
 yargs.command('g <name>', 'create a snapshot for component', {}, snapshot).argv;
 
 async function snapshot(argv: yargs.Arguments<any>) {
+  const saveToSameFolder = argv.direct === 'true';
+
   const root = process.cwd();
   const fileName = path.relative(root, argv.name);
   info(`Reading: ${fileName}`);
@@ -34,7 +36,7 @@ async function snapshot(argv: yargs.Arguments<any>) {
         const info = serializeSymbol(loc, checker);
         data.push(info);
       });
-      generateTestFile(data, testName, fileName);
+      generateTestFile(data, testName, fileName, { saveToSameFolder });
     }
   });
 }

@@ -15,12 +15,19 @@ const TEMPLATE = path.resolve(__dirname, '../template/template');
 export async function generateTestFile(
   data: TestPropsInfo[],
   filename: string,
-  filepath: string
+  filepath: string,
+  options: { saveToSameFolder: boolean }
 ) {
   const root = process.cwd();
-  // TODO: add possibllity to choose destination directory
-  const dest = path.relative(root, '__tests__');
-  const filepathRelative = path.relative(dest, filepath);
+
+  let dest = path.relative(root, '__tests__');
+  if (options.saveToSameFolder) {
+    console.log(filepath);
+    dest = path.relative(root, filepath.match(/(.*)[\/\\]/)[1] || '');
+  }
+  const filepathRelative = options.saveToSameFolder
+    ? `./${path.relative(dest, filepath)}`
+    : path.relative(dest, filepath);
   await fs.mkdirp(dest);
 
   const target = `${dest}/${filename}.test.tsx`;
